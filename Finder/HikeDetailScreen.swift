@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HikeDetailScreen: View {
-    @EnvironmentObject private var appState: AppState;
+    @Environment(AppState.self) private var appState: AppState
 
     let hike: Hike;
     @State private var zoomed: Bool = false
@@ -42,5 +42,5 @@ struct HikeDetailScreen: View {
     NavigationStack{
         HikeDetailScreen(hike: Hike(name: "Sunset View", photo: "img1", miles: 6))
     }
-    .environmentObject(AppState())
+    .environment(AppState())
 }

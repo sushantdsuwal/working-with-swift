@@ -6,17 +6,18 @@
 //
 
 import SwiftUI
+import Observation
 
-
-class AppState: ObservableObject {
-    @Published var isOn: Bool = false
+@Observable
+class AppState {
+     var isOn: Bool = false
 }
 
 
 struct ContentView: View {
    
-    @EnvironmentObject private var appState: AppState;
-    
+    @Environment(AppState.self) private var appState: AppState
+
     let hikes = [
         Hike(name: "Sunset hike", photo: "img1", miles: 6),
         Hike(name: "Narrow passage with the building on both sides", photo: "img2", miles: 8),
@@ -50,9 +51,10 @@ struct ContentView: View {
 }
 
 struct ToggleColorView: View {
-    @EnvironmentObject private var appState: AppState
+    @Environment(AppState.self) private var appState: AppState
     
     var body: some View {
+        @Bindable var appState = appState;
         VStack {
             Image(systemName: appState.isOn ? "lightbulb.fill" : "lightbulb")
                 .font(.largeTitle)
@@ -83,5 +85,5 @@ struct HikeCellView: View {
 
 #Preview {
     ContentView()
-        .environmentObject(AppState())
+        .environment(AppState())
 }
