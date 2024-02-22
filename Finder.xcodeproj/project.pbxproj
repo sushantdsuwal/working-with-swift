@@ -14,6 +14,8 @@
 		460659432B874814000401F0 /* FinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460659422B874814000401F0 /* FinderTests.swift */; };
 		4606594D2B874814000401F0 /* FinderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4606594C2B874814000401F0 /* FinderUITests.swift */; };
 		4606594F2B874814000401F0 /* FinderUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4606594E2B874814000401F0 /* FinderUITestsLaunchTests.swift */; };
+		4606595D2B874FAB000401F0 /* Hike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4606595C2B874FAB000401F0 /* Hike.swift */; };
+		460659612B87577D000401F0 /* HikeDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460659602B87577D000401F0 /* HikeDetailScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,8 @@
 		460659482B874814000401F0 /* FinderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FinderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4606594C2B874814000401F0 /* FinderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderUITests.swift; sourceTree = "<group>"; };
 		4606594E2B874814000401F0 /* FinderUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		4606595C2B874FAB000401F0 /* Hike.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hike.swift; sourceTree = "<group>"; };
+		460659602B87577D000401F0 /* HikeDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HikeDetailScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,10 +98,12 @@
 		460659302B874813000401F0 /* Finder */ = {
 			isa = PBXGroup;
 			children = (
+				4606595B2B874F98000401F0 /* Models */,
 				460659312B874813000401F0 /* FinderApp.swift */,
 				460659332B874813000401F0 /* ContentView.swift */,
 				460659352B874814000401F0 /* Assets.xcassets */,
 				460659372B874814000401F0 /* Preview Content */,
+				460659602B87577D000401F0 /* HikeDetailScreen.swift */,
 			);
 			path = Finder;
 			sourceTree = "<group>";
@@ -125,6 +131,14 @@
 				4606594E2B874814000401F0 /* FinderUITestsLaunchTests.swift */,
 			);
 			path = FinderUITests;
+			sourceTree = "<group>";
+		};
+		4606595B2B874F98000401F0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4606595C2B874FAB000401F0 /* Hike.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,6 +271,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4606595D2B874FAB000401F0 /* Hike.swift in Sources */,
+				460659612B87577D000401F0 /* HikeDetailScreen.swift in Sources */,
 				460659342B874813000401F0 /* ContentView.swift in Sources */,
 				460659322B874813000401F0 /* FinderApp.swift in Sources */,
 			);
