@@ -8,8 +8,14 @@
 import SwiftUI
 
 struct HikeDetailScreen: View {
+    @EnvironmentObject private var appState: AppState;
+
     let hike: Hike;
     @State private var zoomed: Bool = false
+    
+    private var backgroundColor: Color {
+        appState.isOn ? .black : .white
+   }
     
     var body: some View {
         VStack {
@@ -23,9 +29,12 @@ struct HikeDetailScreen: View {
                 }
             Text(hike.name)
             Text("\(hike.miles.formatted()) miles")
-            Spacer()
+           
         }.navigationTitle(hike.name)
             .navigationBarTitleDisplayMode(.inline)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(backgroundColor)
+        
     }
 }
 
@@ -33,4 +42,5 @@ struct HikeDetailScreen: View {
     NavigationStack{
         HikeDetailScreen(hike: Hike(name: "Sunset View", photo: "img1", miles: 6))
     }
+    .environmentObject(AppState())
 }

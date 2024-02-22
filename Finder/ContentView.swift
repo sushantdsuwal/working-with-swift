@@ -7,8 +7,15 @@
 
 import SwiftUI
 
+
+class AppState: ObservableObject {
+    @Published var isOn: Bool = false
+}
+
+
 struct ContentView: View {
-    @State private var isOn: Bool = false;
+   
+    @EnvironmentObject private var appState: AppState;
     
     let hikes = [
         Hike(name: "Sunset hike", photo: "img1", miles: 6),
@@ -17,7 +24,7 @@ struct ContentView: View {
     ];
     
     private var backgroundColor: Color {
-        isOn ? .black : .white
+        appState.isOn ? .black : .white
    }
     
     var body: some View {
@@ -33,7 +40,7 @@ struct ContentView: View {
                 .navigationDestination(for: Hike.self) { hike in
                     HikeDetailScreen(hike: hike)
                 }
-                ToggleColorView(isOn: $isOn)
+                ToggleColorView()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(backgroundColor)
@@ -43,18 +50,14 @@ struct ContentView: View {
 }
 
 struct ToggleColorView: View {
-    @Binding var isOn: Bool
-
-   private var textColor: Color {
-       isOn ? .white : .black
-   }
-
+    @EnvironmentObject private var appState: AppState
+    
     var body: some View {
         VStack {
-            Image(systemName: isOn ? "lightbulb.fill" : "lightbulb")
+            Image(systemName: appState.isOn ? "lightbulb.fill" : "lightbulb")
                 .font(.largeTitle)
-                .foregroundColor(isOn ? .yellow : .black)
-            Toggle(isOn: $isOn, label: {})
+                .foregroundColor(appState.isOn ? .yellow : .black)
+            Toggle(isOn: $appState.isOn, label: {})
             .fixedSize()
         }.frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: .infinity)
     }
@@ -80,4 +83,5 @@ struct HikeCellView: View {
 
 #Preview {
     ContentView()
+        .environmentObject(AppState())
 }
