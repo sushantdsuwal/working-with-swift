@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var isOn: Bool = false;
     
     let hikes = [
         Hike(name: "Sunset hike", photo: "img1", miles: 6),
@@ -15,27 +16,52 @@ struct ContentView: View {
         Hike(name: "Greenery micro shot", photo: "img3", miles: 10),
     ];
     
+    private var backgroundColor: Color {
+        isOn ? .black : .white
+   }
+    
     var body: some View {
         NavigationStack {
-            List(hikes)  { hike in
-                NavigationLink(value: hike) {
-                    HikeCellView(hike: hike)
+            VStack {
+                List(hikes) { hike in
+                    NavigationLink(value: hike) {
+                        HikeCellView(hike: hike)
+                    }
                 }
-            }.navigationTitle("Hikes")
+                .listStyle(.plain)
+                .navigationTitle("Hikes")
                 .navigationDestination(for: Hike.self) { hike in
                     HikeDetailScreen(hike: hike)
                 }
+                ToggleColorView(isOn: $isOn)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(backgroundColor)
+             
         }
     }
 }
 
-#Preview {
-    ContentView()
+struct ToggleColorView: View {
+    @Binding var isOn: Bool
+
+   private var textColor: Color {
+       isOn ? .white : .black
+   }
+
+    var body: some View {
+        VStack {
+            Image(systemName: isOn ? "lightbulb.fill" : "lightbulb")
+                .font(.largeTitle)
+                .foregroundColor(isOn ? .yellow : .black)
+            Toggle(isOn: $isOn, label: {})
+            .fixedSize()
+        }.frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: .infinity)
+    }
 }
 
 struct HikeCellView: View {
     let hike: Hike
-
     var body: some View {
         HStack(alignment: .top) {
             Image(hike.photo)
@@ -50,4 +76,8 @@ struct HikeCellView: View {
             }
         }
     }
+}
+
+#Preview {
+    ContentView()
 }
